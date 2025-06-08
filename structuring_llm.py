@@ -92,42 +92,10 @@ def process_all_html():
           JOIN products_url u
             ON s.products_data_id = u.id
     """, conn)
-    df.to_csv("structured_data.csv", index=False, sep=";")
+    df.to_csv("data\structured_data.csv", index=False, sep=";")
 
     conn.close()
 
 if __name__ == "__main__":
-    #process_all_html()
-    html_fake = """
-        <!DOCTYPE html>
-        <html lang="pt-br">
-        <head>
-            <meta charset="UTF-8">
-            <title>Cartucho HP 65 Preto Original</title>
-        </head>
-        <body>
-            <div class="produto">
-                <h1>Cartucho de Tinta HP 65 - Preto</h1>
-                <p class="marca">Marca: <strong>HP</strong></p>
-                <p class="modelo">Modelo: <strong>65</strong></p>
-                <p class="preco">Preço: <strong>R$ 120,00</strong></p>
-                <p class="cor">Cor: <strong>Preto</strong></p>
-                <p class="descricao">Descrição: Cartucho original de alta qualidade, com excelente rendimento e impressão nítida.</p>
-                <p class="qualidade">Qualidade do texto: <strong>boa</strong></p>
-                <p class="reviews">Avaliações de clientes: <strong>245</strong> reviews</p>
-                <div class="galeria-fotos">
-                    <p>Imagens do produto: <strong>3</strong> fotos disponíveis</p>
-                    <img src="foto1.jpg" alt="Foto 1">
-                    <img src="foto2.jpg" alt="Foto 2">
-                    <img src="foto3.jpg" alt="Foto 3">
-                </div>
-                <div class="confianca">
-                    <p>Autenticidade: <span style="color: green;"><strong>Produto Original</strong></span></p>
-                </div>
-            </div>
-        </body>
-        </html>
-    """
-
     process_all_html()
     print("Extração estruturada concluída e CSV gerado.")
