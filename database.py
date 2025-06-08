@@ -6,6 +6,8 @@ def create_db():
     - products_url: Armazena URLs de produtos para scraping
     - products_data: Armazena dados gerais dos produtos
     - products_review: Armazena avaliações dos produtos
+    - products_html_raw Armazena HTML bruto
+    - products_structured_llm Armazena dados estruturados extraídos de uma ferramenta de LLM
     """
     conn = sqlite3.connect("mercadolivre.db")
     cur = conn.cursor()
@@ -51,6 +53,35 @@ def create_db():
         )
     """)
     conn.commit()
+
+    cur.execute("""
+    CREATE TABLE IF NOT EXISTS products_html_raw (
+        id INTEGER PRIMARY KEY AUTOINCREMENT,
+        products_data_id INTEGER,
+        raw_html TEXT,
+        processed INTEGER DEFAULT 0,
+        data_cadastro DATETIME DEFAULT CURRENT_TIMESTAMP
+    )
+    """)
+    conn.commit()
+
+    cur.execute("""
+    CREATE TABLE IF NOT EXISTS products_structured_llm (
+        id INTEGER PRIMARY KEY AUTOINCREMENT,
+        products_data_id INTEGER,
+        marca TEXT,
+        modelo TEXT,
+        preco REAL,
+        cor TEXT,
+        qualidade_descricao TEXT,
+        quantidade_reviews INTEGER,
+        quantidade_fotos INTEGER,
+        classificacao_confianca TEXT,
+        data_cadastro DATETIME DEFAULT CURRENT_TIMESTAMP
+    )
+    """)
+    conn.commit()
+
     conn.close()
 
 
@@ -118,6 +149,15 @@ def save_review(products_data_id, rating, review, review_date):
     finally:
         conn.close()
 
+def save_raw_html(products_data_id: int, html: str):
+    conn = sqlite3.connect("mercadolivre.db")
+    cur = conn.cursor()
+    cur.execute(
+        "INSERT INTO products_html_raw (products_data_id, raw_html) VALUES (?, ?)",
+        (products_data_id, html)
+    )
+    conn.commit()
+    conn.close()
 
 def query(sql):
     """

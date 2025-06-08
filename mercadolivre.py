@@ -2,7 +2,7 @@ from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.common.by import By
 from selenium.common import NoSuchElementException, ElementNotInteractableException
 
-from database import save_url, save_product, save_review
+from database import save_url, save_product, save_review, save_raw_html
 import time
 
 
@@ -52,7 +52,7 @@ def scrap_list(produto, url, driver):
         raise e
 
 
-def scrap_product(url, driver):
+def scrap_product(products_url_id, url, driver):
     try:
         driver.get(url)
         time.sleep(3)
@@ -78,20 +78,38 @@ def scrap_product(url, driver):
                                                                 "p.ui-review-capability__rating__label").text
             product_review_amount = product_review_amount.replace(' avaliações', '')
 
+        description_element = None
         description = driver.execute_script("return document.querySelector('p.ui-pdp-description__content')")
         if description:
-            description = driver.find_element(By.CSS_SELECTOR, "p.ui-pdp-description__content")
-            description = description.text
+            description_element = driver.find_element(By.CSS_SELECTOR, "p.ui-pdp-description__content")
+            description = description_element.text
         else:
             description = ''
 
-        seller = driver.find_element(By.CSS_SELECTOR, "div.ui-seller-data-header__title-container").text
-        seller = seller.split('Vendido por ')
+        seller_element = driver.find_element(By.CSS_SELECTOR, "div.ui-seller-data-header__title-container")
+        seller = seller_element.text.split('Vendido por ')
 
         if len(seller) > 1:
             seller = seller[1]
         else:
             seller = seller[0]
+        
+        # ——— Agora extraímos o HTML de cada elemento ———
+        meta_html   = meta_tag_price.get_attribute("outerHTML")
+        review_html = product_review.get_attribute("outerHTML")
+        seller_html = seller_element.get_attribute("outerHTML")
+        desc_html   = description_element.get_attribute("outerHTML") if description_element else ""
+
+        # Empacota os principais elementos em um unico container
+        raw_html = (
+            "<div class='scrap-container'>\n"
+            f"{meta_html}\n"
+            f"{review_html}\n"
+            f"{seller_html}\n"
+            f"{desc_html}\n"
+            "</div>"
+        )
+        save_raw_html(products_url_id, raw_html)
 
         return (url, title, price, product_review_rating, product_review_amount, seller, description)
 
