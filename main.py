@@ -26,7 +26,7 @@ def product(driver, limit = 10):
     for product_url in products_url:
         try:
             print(product_url[2])
-            url, title, price, product_review_rating, product_review_amount, seller, description = scrap_product(product_url[0], product_url[2], driver)
+            url, title, price, product_review_rating, product_review_amount, seller, description = scrap_product(product_url[2], driver)
             save_product(product_url[0], url, title, price, product_review_rating, product_review_amount, seller, description)
             database.query(f"update products_url set scraped = 1 where id = {product_url[0]}")
         except Exception as e:

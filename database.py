@@ -6,8 +6,6 @@ def create_db():
     - products_url: Armazena URLs de produtos para scraping
     - products_data: Armazena dados gerais dos produtos
     - products_review: Armazena avaliações dos produtos
-    - products_html_raw Armazena HTML bruto
-    - products_structured_llm Armazena dados estruturados extraídos de uma ferramenta de LLM
     """
     conn = sqlite3.connect("mercadolivre.db")
     cur = conn.cursor()
@@ -148,16 +146,6 @@ def save_review(products_data_id, rating, review, review_date):
         print(f"Erro ao inserir produto, url: {e}")
     finally:
         conn.close()
-
-def save_raw_html(products_data_id: int, html: str):
-    conn = sqlite3.connect("mercadolivre.db")
-    cur = conn.cursor()
-    cur.execute(
-        "INSERT INTO products_html_raw (products_data_id, raw_html) VALUES (?, ?)",
-        (products_data_id, html)
-    )
-    conn.commit()
-    conn.close()
 
 def query(sql):
     """
