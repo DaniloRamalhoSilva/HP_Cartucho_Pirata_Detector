@@ -89,9 +89,9 @@ def classify_and_update(db_path="mercadolivre.db", rate_limit_sec=1.5):
             res = client.responses.create(
                 model="gpt-4o-mini",
                 instructions=(
-                    SYSTEM_PROMPT  # mesmo conteúdo do prompt anterior
+                    SYSTEM_PROMPT  
                 ),
-                input=build_message(rec)  # conteúdo da mensagem do usuário
+                input=build_message(rec)  
             )
             label = res.output_text.strip().lower()
 

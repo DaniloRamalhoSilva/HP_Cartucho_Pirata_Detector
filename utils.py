@@ -65,7 +65,6 @@ def update_comment_counts(db_path="mercadolivre.db"):
     conn.close()
 
 
-# função para calcular a media da classificação
 def export_dataset():
     conn = sqlite3.connect("mercadolivre.db")
     df = pd.read_sql("""
@@ -75,3 +74,4 @@ def export_dataset():
         JOIN products_url PU ON PU.id = PD.products_url_id
     """, conn)
     df.to_csv("data\dataset_hp.csv", index=False, sep=";")
+

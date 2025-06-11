@@ -1,6 +1,7 @@
 from database import save_product
 from mercadolivre import scrap_list, scrap_product, scrap_comments
 from classifier import classify_and_update
+from utils import export_dataset, update_comment_counts
 
 from urllib.parse import quote
 from selenium import webdriver
@@ -43,7 +44,6 @@ def comments(driver, limit = None, comments_limit = 0):
         scrap_comments(product_data[0], product_data[2], comments_limit, driver)
 
 
-
 if __name__ == "__main__":
     # criando tabelas caso não existam
     database.create_db()
@@ -54,18 +54,24 @@ if __name__ == "__main__":
     # chrome_options.add_argument("--no-sandbox")
     # chrome_options.add_argument("--disable-dev-shm-usage")
     driver = webdriver.Chrome(options=chrome_options)
-
-    # vamos começar recuperando a lista de produtos
+    
+    # Configuração de Script 
     produto = "cartucho hp original"
-
     paginas = 1
     produtos = 10
     comentarios = 10
+
+    # Scraping
     list(produto, driver, paginas)
     product(driver, produtos)
     comments(driver, produtos, comentarios)
 
+    # Crai uma pontuação para comentarios positivos e negativos
+    update_comment_counts()
+
     # executa classificação e grava no SQLite
     classify_and_update()   
 
-    #driver.quit()
+    # Crai o dataset em csv
+    export_dataset() 
+

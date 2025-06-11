@@ -12,6 +12,7 @@ Este repositório implementa um pipeline automatizado para:
 2. **Armazenamento** dos dados em banco SQLite.
 3. **Análise de comentários** via regex para extrair evidências quantitativas.
 4. **Classificação** binária (`original` vs. `suspeito`) usando LLM (OpenAI GPT).  
+5. **Exporta CSV** para facilitar a análise exploratória e treinamento de modelos de machine learning.
 
 O resultado é um dataset pronto para EDA ou integração em sistemas de monitoramento de e-commerce.
 
@@ -25,7 +26,7 @@ O resultado é um dataset pronto para EDA ou integração em sistemas de monitor
 - **Evidências via Regex**: conta ocorrências de termos positivos e negativos nos comentários.
 - **Classificação LLM**: prompt few-shot com GPT para decidir `original`/`suspeito`.
 - **Banco de Dados**: estrutura normalizada em SQLite para consultas e exportação.
-
+- **Exporta em CSV**: gera um arquivo CSV com as principais features para facilitar a análise exploratória e treinamento de modelos de machine learning.
 ---
 
 ## 📦 Pré-requisitos
@@ -57,15 +58,17 @@ cd hp-cartucho-detector
 ```
 **2. Crie e ative um ambiente virtual:**
 ```bash
-python -m venv venv
+python -m venv venv # ou py -3.11 -m venv venv 
 source venv/bin/activate  # Linux/macOS
-venvScriptsactivate     # Windows
+.\venv\Scripts\activate     # Windows
 ```
 **3. Instale dependências:**
 ```bash
+python.exe -m pip install --upgrade pip
 pip install -r requirements.txt
 ```
 **4. Configure sua chave OpenAI (no `.env`):**
+Criar um arquivo .env na raiz do progeto e informar a chave da API da OpenAi 
 ```env
 OPENAI_API_KEY=sk-...
 ```
@@ -79,7 +82,7 @@ OPENAI_API_KEY=sk-...
 ├── classifier.py        # Lógica de prompt GPT e atualização de labels
 ├── database.py          # Criação/alteração do esquema SQLite e funções de CRUD
 ├── mercadolivre.py      # Funções de scraping de listagem, produto e comentários
-├── utils.py             # Contagem de regex e helpers
+├── utils.py             # Contagem de regex e exporta em CSV
 ├── docs/ 
 │   └── dataset_hp.csv   # Dados em CSV
 ├── docs/                # Documentação e exemplos de amostras
@@ -93,6 +96,13 @@ OPENAI_API_KEY=sk-...
 
 ## 🛠️ Como Usar
 
+Ajuste as variáveis de Script no main.py
+**produto** = palavra chave para a busca do produto
+**páginas** = número de páginas percorridas
+**produtos** = quantidade de produtos por pagina
+**comentários** = quantidade de comentários por produtos
+
+execulte o comando:
 ```bash
 python main.py
 ```
