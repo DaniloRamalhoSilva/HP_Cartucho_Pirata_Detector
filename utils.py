@@ -68,10 +68,10 @@ def update_comment_counts(db_path="mercadolivre.db"):
 def export_dataset():
     conn = sqlite3.connect("mercadolivre.db")
     df = pd.read_sql("""
-        SELECT * 
-        FROM products_data PD 
-        JOIN products_review PR ON PR.products_data_id = PD.id
-        JOIN products_url PU ON PU.id = PD.products_url_id
+        SELECT id, label, positive_occurrences, negative_occurrences, 
+               price, review_rating, url, title, review_amount, seller,
+               description, url, data_cadastro
+        FROM products_data  
     """, conn)
     df.to_csv("data\dataset_hp.csv", index=False, sep=";")
 

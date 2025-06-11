@@ -56,7 +56,7 @@ if __name__ == "__main__":
     driver = webdriver.Chrome(options=chrome_options)
     
     # Configuração de Script 
-    produto = "cartucho hp original"
+    produto = "cartucho hp 667 preto"
     paginas = 1
     produtos = 10
     comentarios = 10
