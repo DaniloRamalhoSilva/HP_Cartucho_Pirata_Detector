@@ -77,7 +77,7 @@ OPENAI_API_KEY=sk-...
 ├── database.py          # Criação/alteração do esquema SQLite e funções de CRUD
 ├── mercadolivre.py      # Funções de scraping de listagem, produto e comentários
 ├── utils.py             # Contagem de regex e exporta em CSV
-├── docs/ 
+├── data/
 │   └── dataset_hp.csv   # Dados em CSV
 ├── docs/                # Documentação e exemplos de amostras
 │   └── Relatorio - Coleta e Construção da Base de Dados.docx   # Documentação completa do Entregável 1
