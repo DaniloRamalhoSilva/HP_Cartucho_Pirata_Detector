@@ -90,11 +90,11 @@ OPENAI_API_KEY=sk-...
 
 ## 🛠️ Como Usar
 
-Ajuste as variáveis de Script no main.py
-**produto** = palavra chave para a busca do produto
-**páginas** = número de páginas percorridas
-**produtos** = quantidade de produtos por pagina
-**comentários** = quantidade de comentários por produtos
+Ajuste as variáveis de Script no main.py   
+**produto** = palavra chave para a busca do produto   
+**páginas** = número de páginas percorridas   
+**produtos** = quantidade de produtos por pagina   
+**comentários** = quantidade de comentários por produtos   
 
 execulte o comando:
 ```bash
