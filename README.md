@@ -41,12 +41,6 @@ openai
 pandas
 python-dotenv
 ```
-
-Instalação rápida:
-```bash
-pip install -r requirements.txt
-```
-
 ---
 
 ## ⚙️ Configuração do Ambiente
