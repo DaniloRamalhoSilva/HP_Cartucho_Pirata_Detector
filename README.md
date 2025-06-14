@@ -102,13 +102,6 @@ python main.py
 ```
 ---
 
-
-## 📄 Licença
-
-Este projeto está sob a licença MIT. Veja o arquivo \`LICENSE\` para mais detalhes.
-
----
-
 ## 👨‍🏫 Autores:
 - Danilo Ramalho Silva | RM: 555183
 - Israel Dalcin Alves Diniz | RM: 554668
