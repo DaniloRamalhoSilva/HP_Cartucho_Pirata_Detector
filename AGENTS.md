@@ -1,6 +1,6 @@
 Challenge Sprint - HP
 
-# Entregável 1 (FINALIZADO): Coleta e Construção da Base de Dados 
+# Sprint 1 (FINALIZADO): Coleta e Construção da Base de Dados 
 
 A empresa HP deseja identificar possíveis casos de pirataria de seus produtos vendidos em sites de e-commerce. Anúncios com preços muito abaixo do praticado oficialmente podem indicar falsificações. O objetivo do projeto é desenvolver uma solução inteligente e automatizada, com Web Scraping, Análise de Dados, Machine Learning e Deploy em WebApp que ajude na identificação de produtos suspeitos.  
 
@@ -25,7 +25,7 @@ Gerar um dataset estruturado, com features relevantes e feature target de rótul
 Preparar uma apresentação documentando as fontes e decisões tomadas no processo de scraping e rotulagem. Incluir a descrição (nome) das features coletadas e 5 exemplos de amostras de dados.  
 
 
-# Entregável 2 (EM ANDAMENTO): Análise Exploratória e Descritiva dos Dados 
+# Sprint 2 (EM ANDAMENTO): Análise Exploratória e Descritiva dos Dados 
 
 Realizar EDA (Análise de Dados Exploratória) na base coletada.
 
