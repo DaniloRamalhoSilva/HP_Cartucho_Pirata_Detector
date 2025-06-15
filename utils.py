@@ -71,5 +71,5 @@ def export_dataset():
         SELECT id, data_cadastro, title, price, description, seller, review_rating, review_amount, url,  positive_occurrences, negative_occurrences, label
         FROM products_data  
     """, conn)
-    df.to_csv("data\dataset_hp.csv", index=False, sep=";")
+    df.to_csv("data/dataset_hp.csv", index=False, sep=";")
 

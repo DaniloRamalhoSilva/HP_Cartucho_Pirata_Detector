@@ -14,7 +14,7 @@ Este repositório implementa um pipeline automatizado para:
 4. **Classificação** binária (`original` vs. `suspeito`) usando LLM (OpenAI GPT).  
 5. **Exporta CSV** para facilitar a análise exploratória e treinamento de modelos de machine learning.
 
-O resultado é um dataset pronto para EDA ou integração em sistemas de monitoramento de e-commerce. O notebook com essa análise está disponível em `docs/eda.ipynb`.
+O resultado é um dataset pronto para EDA ou integração em sistemas de monitoramento de e-commerce. O notebook com essa análise está disponível em `docs/Análise_Exploratória_do_Dataset_HP.ipynb`.
 
 ---
 
@@ -62,7 +62,7 @@ python.exe -m pip install --upgrade pip
 pip install -r requirements.txt
 ```
 **4. Configure sua chave OpenAI (no `.env`):**
-Criar um arquivo .env na raiz do progeto e informar a chave da API da OpenAi 
+Criar um arquivo .env na raiz do projeto e informar a chave da API da OpenAi
 ```env
 OPENAI_API_KEY=sk-...
 ```
@@ -80,8 +80,9 @@ OPENAI_API_KEY=sk-...
 ├── data/
 │   └── dataset_hp.csv   # Dados em CSV
 ├── docs/
-│   ├── eda.ipynb        # Notebook de exploração dos dados
-│   └── Relatorio - Coleta e Construção da Base de Dados.docx   # Documentação completa do Entregável 1
+│   ├── Análise_Exploratória_do_Dataset_HP.ipynb  # Notebook de exploração dos dados
+│   ├── Relatório Sprint 1 - Coleta e Construção da Base de Dados.docx  # Documentação completa do Entregável 1
+│   └── Relatório Sprint 2 - Análise Exploratória do Dataset HP.pdf      # Documento da segunda sprint
 ├── requirements.txt     # Dependências do Python
 ├── README.md            # Este arquivo
 └── mercadolivre.db      # Banco de dados SQLite (gerado em runtime)
@@ -97,7 +98,7 @@ Ajuste as variáveis de Script no main.py
 **produtos** = quantidade de produtos por pagina   
 **comentários** = quantidade de comentários por produtos   
 
-execulte o comando:
+execute o comando:
 ```bash
 python main.py
 ```
