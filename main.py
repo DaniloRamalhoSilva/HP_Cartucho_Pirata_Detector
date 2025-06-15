@@ -59,7 +59,7 @@ if __name__ == "__main__":
     produto = "cartucho hp 667 preto"
     paginas = 1
     produtos = 50
-    comentarios = 10
+    comentarios = 20
 
     # Scraping
     list(produto, driver, paginas)

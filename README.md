@@ -14,7 +14,7 @@ Este repositório implementa um pipeline automatizado para:
 4. **Classificação** binária (`original` vs. `suspeito`) usando LLM (OpenAI GPT).  
 5. **Exporta CSV** para facilitar a análise exploratória e treinamento de modelos de machine learning.
 
-O resultado é um dataset pronto para EDA ou integração em sistemas de monitoramento de e-commerce.
+O resultado é um dataset pronto para EDA ou integração em sistemas de monitoramento de e-commerce. O notebook com essa análise está disponível em `docs/eda.ipynb`.
 
 ---
 
@@ -77,9 +77,10 @@ OPENAI_API_KEY=sk-...
 ├── database.py          # Criação/alteração do esquema SQLite e funções de CRUD
 ├── mercadolivre.py      # Funções de scraping de listagem, produto e comentários
 ├── utils.py             # Contagem de regex e exporta em CSV
-├── docs/ 
+├── data/
 │   └── dataset_hp.csv   # Dados em CSV
-├── docs/                # Documentação e exemplos de amostras
+├── docs/
+│   ├── eda.ipynb        # Notebook de exploração dos dados
 │   └── Relatorio - Coleta e Construção da Base de Dados.docx   # Documentação completa do Entregável 1
 ├── requirements.txt     # Dependências do Python
 ├── README.md            # Este arquivo
